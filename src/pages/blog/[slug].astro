@@ -1,24 +1,81 @@
 ---
-import { getCollection, render } from 'astro:content';
-import CollectionEntryLayout from '../../layouts/CollectionEntryLayout.astro';
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { sanity, urlFor } from "../../lib/sanity";
+import PortableText from "../../components/PortableText.astro";
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog');
+  const posts = await sanity.fetch(`
+    *[_type == "blogPost" && defined(slug.current)]{
+      "slug": slug.current
+    }
+  `);
 
-  return posts.map((post) => ({
-    params: { slug: post.id },
-    props: { post },
+  return posts.map((post: { slug: string }) => ({
+    params: { slug: post.slug },
   }));
 }
 
-const { post } = Astro.props;
-const { Content } = await render(post);
+const { slug } = Astro.params;
+
+const post = await sanity.fetch(
+  `*[_type == "blogPost" && slug.current == $slug][0]{
+    title,
+    excerpt,
+    publishedAt,
+    tags,
+    coverImage,
+    gallery,
+    videoUrl,
+    body
+  }`,
+  { slug }
+);
 ---
 
-<CollectionEntryLayout
-  title={post.data.title}
-  description={post.data.description}
-  date={post.data.date}
->
-  <Content />
-</CollectionEntryLayout>
+<BaseLayout title={`${post.title} | Blog | SecuritySketchbook`}>
+  <main class="container">
+    <h1>{post.title}</h1>
+
+    {post.coverImage && (
+      <img
+        src={urlFor(post.coverImage).width(1400).url()}
+        alt={post.coverImage?.alt || post.title}
+      />
+    )}
+
+    {post.excerpt && <p>{post.excerpt}</p>}
+
+    {post.tags && post.tags.length > 0 && (
+      <p>
+        <strong>Tags:</strong> {post.tags.join(", ")}
+      </p>
+    )}
+
+    {post.videoUrl && (
+      <p>
+        <a href={post.videoUrl} target="_blank" rel="noopener noreferrer">
+          Watch video
+        </a>
+      </p>
+    )}
+
+    {post.gallery && post.gallery.length > 0 && (
+      <section>
+        <h2>Gallery</h2>
+        <div class="gallery">
+          {post.gallery.map((item: any) => (
+            <figure>
+              <img
+                src={urlFor(item).width(1200).url()}
+                alt={item?.alt || post.title}
+              />
+              {item?.caption && <figcaption>{item.caption}</figcaption>}
+            </figure>
+          ))}
+        </div>
+      </section>
+    )}
+
+    {post.body && <PortableText value={post.body} />}
+  </main>
+</BaseLayout>

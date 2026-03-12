@@ -1,30 +1,41 @@
 ---
-import { getCollection } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { sanity, urlFor } from "../../lib/sanity";
 
-const sketches = await getCollection('sketchbook');
-const sortedSketches = sketches.sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
-);
+const posts = await sanity.fetch(`
+  *[_type == "sketchbookPost"] | order(publishedAt desc) {
+    _id,
+    title,
+    "slug": slug.current,
+    excerpt,
+    publishedAt,
+    medium,
+    image,
+    videoUrl
+  }
+`);
 ---
 
-<BaseLayout title="Sketchbook">
+<BaseLayout title="Sketchbook | SecuritySketchbook">
   <main class="container">
-    <section class="page-intro">
-      <h1>Sketchbook</h1>
-      <p>Visual notes, diagrams, and conceptual sketches.</p>
-    </section>
+    <h1>Sketchbook</h1>
 
-    <div class="card-grid">
-      {sortedSketches.map((sketch) => (
-        <article class="card">
-          <a class="card-title-link" href={`/sketchbook/${sketch.id}/`}>
-            <h2>{sketch.data.title}</h2>
+    <div class="post-grid">
+      {posts.map((post) => (
+        <article class="post-card">
+          <a href={`/sketchbook/${post.slug}/`}>
+            {post.image && (
+              <img
+                src={urlFor(post.image).width(1200).url()}
+                alt={post.image?.alt || post.title}
+              />
+            )}
+            <h2>{post.title}</h2>
           </a>
 
-          <p class="card-description">{sketch.data.description}</p>
-
-          <div class="card-meta">{sketch.data.date.toDateString()}</div>
+          {post.excerpt && <p>{post.excerpt}</p>}
+          {post.medium && <p><strong>Medium:</strong> {post.medium}</p>}
+          {post.videoUrl && <p>Includes video</p>}
         </article>
       ))}
     </div>

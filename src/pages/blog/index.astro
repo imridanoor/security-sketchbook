@@ -1,31 +1,40 @@
 ---
-import { getCollection } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { sanity, urlFor } from "../../lib/sanity";
 
-const posts = await getCollection('blog');
-const sortedPosts = posts.sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
-);
+const posts = await sanity.fetch(`
+  *[_type == "blogPost"] | order(publishedAt desc) {
+    _id,
+    title,
+    "slug": slug.current,
+    excerpt,
+    publishedAt,
+    tags,
+    coverImage,
+    videoUrl
+  }
+`);
 ---
 
-<BaseLayout title="Blog">
-
+<BaseLayout title="Blog | SecuritySketchbook">
   <main class="container">
-    <section class="page-intro">
-      <h1>Blog</h1>
-      <p>Thoughts, write-ups, and lessons from my cybersecurity journey.</p>
-    </section>
+    <h1>Blog</h1>
 
-    <div class="card-grid">
-      {sortedPosts.map((post) => (
-        <article class="card">
-          <a class="card-title-link" href={`/blog/${post.id}/`}>
-            <h2>{post.data.title}</h2>
+    <div class="post-grid">
+      {posts.map((post) => (
+        <article class="post-card">
+          <a href={`/blog/${post.slug}/`}>
+            {post.coverImage && (
+              <img
+                src={urlFor(post.coverImage).width(1200).url()}
+                alt={post.coverImage?.alt || post.title}
+              />
+            )}
+            <h2>{post.title}</h2>
           </a>
 
-          <p class="card-description">{post.data.description}</p>
-
-          <div class="card-meta">{post.data.date.toDateString()}</div>
+          {post.excerpt && <p>{post.excerpt}</p>}
+          {post.videoUrl && <p>Includes video</p>}
         </article>
       ))}
     </div>

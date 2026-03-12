@@ -1,24 +1,105 @@
 ---
-import { getCollection, render } from 'astro:content';
-import CollectionEntryLayout from '../../layouts/CollectionEntryLayout.astro';
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { sanity, urlFor } from "../../lib/sanity";
+import PortableText from "../../components/PortableText.astro";
 
 export async function getStaticPaths() {
-  const labs = await getCollection('labs');
+  const posts = await sanity.fetch(`
+    *[_type == "labPost" && defined(slug.current)]{
+      "slug": slug.current
+    }
+  `);
 
-  return labs.map((lab) => ({
-    params: { slug: lab.id },
-    props: { lab },
+  return posts.map((post: { slug: string }) => ({
+    params: { slug: post.slug },
   }));
 }
 
-const { lab } = Astro.props;
-const { Content } = await render(lab);
+const { slug } = Astro.params;
+
+const post = await sanity.fetch(
+  `*[_type == "labPost" && slug.current == $slug][0]{
+    title,
+    excerpt,
+    publishedAt,
+    difficulty,
+    toolsUsed,
+    logSources,
+    mitreTechniques,
+    detectionLogic,
+    coverImage,
+    gallery,
+    videoUrl,
+    body
+  }`,
+  { slug }
+);
 ---
 
-<CollectionEntryLayout
-  title={lab.data.title}
-  description={lab.data.description}
-  date={lab.data.date}
->
-  <Content />
-</CollectionEntryLayout>
+<BaseLayout title={`${post.title} | Labs | SecuritySketchbook`}>
+  <main class="container">
+    <h1>{post.title}</h1>
+
+    {post.coverImage && (
+      <img
+        src={urlFor(post.coverImage).width(1400).url()}
+        alt={post.coverImage?.alt || post.title}
+      />
+    )}
+
+    {post.excerpt && <p>{post.excerpt}</p>}
+    {post.difficulty && <p><strong>Difficulty:</strong> {post.difficulty}</p>}
+
+    {post.toolsUsed && post.toolsUsed.length > 0 && (
+      <p>
+        <strong>Tools Used:</strong> {post.toolsUsed.join(", ")}
+      </p>
+    )}
+
+    {post.logSources && post.logSources.length > 0 && (
+      <p>
+        <strong>Log Sources:</strong> {post.logSources.join(", ")}
+      </p>
+    )}
+
+    {post.mitreTechniques && post.mitreTechniques.length > 0 && (
+      <p>
+        <strong>MITRE ATT&amp;CK:</strong> {post.mitreTechniques.join(", ")}
+      </p>
+    )}
+
+    {post.detectionLogic && (
+      <div>
+        <h2>Detection Logic</h2>
+        <p>{post.detectionLogic}</p>
+      </div>
+    )}
+
+    {post.videoUrl && (
+      <p>
+        <a href={post.videoUrl} target="_blank" rel="noopener noreferrer">
+          Watch video
+        </a>
+      </p>
+    )}
+
+    {post.gallery && post.gallery.length > 0 && (
+      <section>
+        <h2>Gallery</h2>
+        <div class="gallery">
+          {post.gallery.map((item: any) => (
+            <figure>
+              <img
+                src={urlFor(item).width(1200).url()}
+                alt={item?.alt || post.title}
+              />
+              {item?.caption && <figcaption>{item.caption}</figcaption>}
+            </figure>
+          ))}
+        </div>
+      </section>
+    )}
+
+    {post.body && <PortableText value={post.body} />}
+  </main>
+</BaseLayout>
