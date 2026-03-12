@@ -21,7 +21,7 @@ const posts = await sanity.fetch(`
     <h1>Sketchbook</h1>
 
     <div class="post-grid">
-      {posts.map((post) => (
+      {posts.map((post: any) => (
         <article class="post-card">
           <a href={`/sketchbook/${post.slug}/`}>
             {post.image && (
