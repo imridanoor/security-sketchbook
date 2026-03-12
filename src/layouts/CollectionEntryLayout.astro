@@ -1,0 +1,27 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  date: Date;
+}
+
+const { title, description, date } = Astro.props;
+---
+
+<BaseLayout title={title}>
+  <main class="container">
+    <header class="entry-header">
+      <h1>{title}</h1>
+
+      {description && <p class="entry-description">{description}</p>}
+
+      <div class="entry-meta">{date.toDateString()}</div>
+    </header>
+
+    <article class="entry-content">
+      <slot />
+    </article>
+  </main>
+</BaseLayout>

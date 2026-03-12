@@ -1,0 +1,46 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Portfolio">
+  <main class="container">
+    <section class="page-intro">
+      <h1>Portfolio</h1>
+      <p>A curated overview of my cybersecurity work, learning, and projects.</p>
+    </section>
+
+    <section class="card-grid">
+      <article class="card">
+        <h2>Labs</h2>
+        <p class="card-description">
+          Hands-on investigations, technical walkthroughs, and security research.
+        </p>
+        <a href="/labs">View Labs →</a>
+      </article>
+
+      <article class="card">
+        <h2>Blog</h2>
+        <p class="card-description">
+          Write-ups, reflections, and explanations of concepts I’m learning.
+        </p>
+        <a href="/blog">View Blog →</a>
+      </article>
+
+      <article class="card">
+        <h2>Sketchbook</h2>
+        <p class="card-description">
+          Diagrams, analogies, and visual notes that make security concepts click.
+        </p>
+        <a href="/sketchbook">View Sketchbook →</a>
+      </article>
+
+      <article class="card">
+        <h2>Testimonials</h2>
+        <p class="card-description">
+          Feedback and recommendations from people I’ve worked with.
+        </p>
+        <a href="/testimonials">View Testimonials →</a>
+      </article>
+    </section>
+  </main>
+</BaseLayout>

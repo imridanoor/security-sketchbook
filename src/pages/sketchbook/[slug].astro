@@ -1,0 +1,24 @@
+---
+import { getCollection, render } from 'astro:content';
+import CollectionEntryLayout from '../../layouts/CollectionEntryLayout.astro';
+
+export async function getStaticPaths() {
+  const sketches = await getCollection('sketchbook');
+
+  return sketches.map((sketch) => ({
+    params: { slug: sketch.id },
+    props: { sketch },
+  }));
+}
+
+const { sketch } = Astro.props;
+const { Content } = await render(sketch);
+---
+
+<CollectionEntryLayout
+  title={sketch.data.title}
+  description={sketch.data.description}
+  date={sketch.data.date}
+>
+  <Content />
+</CollectionEntryLayout>

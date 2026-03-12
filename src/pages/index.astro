@@ -1,17 +1,28 @@
 ---
-
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="Security Sketchbook">
+  <main class="container">
+    <section class="hero">
+      <h1>Security Sketchbook</h1>
+      <p>
+        Visualizing cybersecurity concepts through diagrams and investigations.
+      </p>
+    </section>
+
+    <section class="card-grid">
+      <article class="card">
+        <h2>What People Are Saying</h2>
+
+        <p class="card-description">
+          "Your Kerberos diagram made something click instantly."
+        </p>
+
+        <p class="card-description">
+          "One of the clearest explanations of Active Directory I’ve seen."
+        </p>
+      </article>
+    </section>
+  </main>
+</BaseLayout>

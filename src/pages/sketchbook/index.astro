@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const sketches = await getCollection('sketchbook');
+const sortedSketches = sketches.sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+---
+
+<BaseLayout title="Sketchbook">
+  <main class="container">
+    <section class="page-intro">
+      <h1>Sketchbook</h1>
+      <p>Visual notes, diagrams, and conceptual sketches.</p>
+    </section>
+
+    <div class="card-grid">
+      {sortedSketches.map((sketch) => (
+        <article class="card">
+          <a class="card-title-link" href={`/sketchbook/${sketch.id}/`}>
+            <h2>{sketch.data.title}</h2>
+          </a>
+
+          <p class="card-description">{sketch.data.description}</p>
+
+          <div class="card-meta">{sketch.data.date.toDateString()}</div>
+        </article>
+      ))}
+    </div>
+  </main>
+</BaseLayout>

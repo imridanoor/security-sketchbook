@@ -1,0 +1,33 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const posts = await getCollection('blog');
+const sortedPosts = posts.sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+---
+
+<BaseLayout title="Blog">
+
+  <main class="container">
+    <section class="page-intro">
+      <h1>Blog</h1>
+      <p>Thoughts, write-ups, and lessons from my cybersecurity journey.</p>
+    </section>
+
+    <div class="card-grid">
+      {sortedPosts.map((post) => (
+        <article class="card">
+          <a class="card-title-link" href={`/blog/${post.id}/`}>
+            <h2>{post.data.title}</h2>
+          </a>
+
+          <p class="card-description">{post.data.description}</p>
+
+          <div class="card-meta">{post.data.date.toDateString()}</div>
+        </article>
+      ))}
+    </div>
+  </main>
+</BaseLayout>
