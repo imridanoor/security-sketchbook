@@ -1,21 +1,35 @@
-<section class="card-grid">
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Security Sketchbook">
+  <main class="container">
+    <section class="hero">
+      <h1>Security Sketchbook</h1>
+      <p>
+        Visualizing cybersecurity concepts through diagrams and investigations.
+      </p>
+    </section>
+
+    <section class="card-grid">
   <article class="card">
     <h2>What is Security Sketchbook?</h2>
 
     <p class="card-description">
-      This site is my personal notebook for learning cybersecurity.
-      I document things I'm studying, diagrams I'm drawing, and
-      investigations I'm working through.
+      This site is my personal notebook for learning cybersecurity. I document
+      things I'm studying, diagrams I'm drawing, and investigations I'm working through.
     </p>
 
     <p class="card-description">
       You can explore the site in three ways:
     </p>
 
-    <ul>
+    <ul class="card-list">
       <li><strong>Blog</strong> — explanations of concepts and ideas</li>
       <li><strong>Labs</strong> — hands-on investigations and experiments</li>
       <li><strong>Sketchbook</strong> — visual diagrams of security systems</li>
     </ul>
   </article>
 </section>
+  </main>
+</BaseLayout>
