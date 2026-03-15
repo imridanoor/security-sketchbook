@@ -1,28 +1,21 @@
----
-import BaseLayout from '../layouts/BaseLayout.astro';
----
+<main class="home">
 
-<BaseLayout title="Security Sketchbook">
-  <main class="container">
-    <section class="hero">
-      <h1>Security Sketchbook</h1>
-      <p>
-        Visualizing cybersecurity concepts through diagrams and investigations.
-      </p>
-    </section>
+<h1 class="title">Security Sketchbook</h1>
 
-    <section class="card-grid">
-      <article class="card">
-        <h2>What People Are Saying</h2>
+<div class="hero-image">
+<img src="/images/desk-scene.png" alt="desk scene">
+</div>
 
-        <p class="card-description">
-          "Your Kerberos diagram made something click instantly."
-        </p>
+<p class="intro">
+Rida’s learning notebook on cybersecurity —
+diagrams, labs, and things I’m still figuring out.
+</p>
 
-        <p class="card-description">
-          "One of the clearest explanations of Active Directory I’ve seen."
-        </p>
-      </article>
-    </section>
-  </main>
-</BaseLayout>
+<nav class="home-links">
+<a href="/blog">Blog</a>
+<a href="/labs">Labs</a>
+<a href="/sketchbook">Sketchbook</a>
+<a href="/about">About</a>
+</nav>
+
+</main>
