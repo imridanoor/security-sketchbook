@@ -1,3 +1,263 @@
+:root {
+  --bg: #3e3732;
+  --surface: rgba(243, 224, 206, 0.92);
+  --text: #512222;
+  --muted: #5f5a52;
+  --muted-light: #7b746a;
+  --border: rgba(17, 17, 17, 0.08);
+  --border-radius: 18px;
+  --shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+  --max-width: 1100px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: system-ui, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text);
+  background-image: url("/images/desk-scene.png");
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+main.container {
+  max-width: var(--max-width);
+  margin: 32px auto;
+  padding: 48px 24px 80px;
+  background: rgba(243, 238, 228, 0.86);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* NAVBAR */
+
+.site-nav {
+  background: rgba(243, 238, 228, 0.7);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.nav-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.brand {
+  font-weight: 700;
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: var(--text);
+  letter-spacing: -0.02em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.nav-links a:hover {
+  color: var(--text);
+}
+
+/* HERO */
+
+.hero {
+  padding: 88px 0 36px;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: clamp(3rem, 8vw, 5.6rem);
+  line-height: 0.92;
+  letter-spacing: -0.06em;
+  margin: 0 0 20px;
+  font-weight: 800;
+}
+
+.hero p {
+  max-width: 760px;
+  margin: 0 auto;
+  color: var(--muted);
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+/* SHARED PAGE INTRO */
+
+.page-intro {
+  margin-bottom: 40px;
+}
+
+.page-intro h1 {
+  margin: 0 0 12px;
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.page-intro p {
+  color: var(--muted);
+  margin: 0;
+  max-width: 700px;
+  line-height: 1.7;
+}
+
+/* GRID + CARDS */
+
+.home-grid,
+.card-grid {
+  display: grid;
+  gap: 24px;
+  margin-top: 36px;
+}
+
+.card {
+  background: var(--surface);
+  padding: 28px;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.section-card h2,
+.card h2 {
+  margin: 0 0 10px;
+  font-size: 1.6rem;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.section-card p,
+.card p {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.section-card a,
+.card a {
+  text-decoration: none;
+}
+
+.section-card a:hover,
+.card a:hover {
+  text-decoration: underline;
+}
+
+.card-title-link {
+  text-decoration: none;
+  color: var(--text);
+}
+
+.card-title-link:hover {
+  text-decoration: underline;
+}
+
+.card-title-link h2 {
+  margin: 0 0 10px;
+  font-size: 1.5rem;
+  letter-spacing: -0.03em;
+}
+
+.card-description {
+  margin: 0 0 14px;
+  color: var(--muted);
+}
+
+.card-meta {
+  font-size: 0.95rem;
+  color: var(--muted-light);
+}
+
+/* ENTRY PAGES */
+
+.entry-header {
+  margin-bottom: 32px;
+}
+
+.entry-header h1 {
+  margin: 0 0 12px;
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.entry-description {
+  color: var(--muted);
+  margin: 0 0 12px;
+  max-width: 760px;
+  line-height: 1.7;
+}
+
+.entry-meta {
+  font-size: 0.95rem;
+  color: var(--muted-light);
+}
+
+.entry-content {
+  margin-top: 40px;
+  line-height: 1.8;
+  max-width: 760px;
+}
+
+.entry-content h2,
+.entry-content h3,
+.entry-content h4 {
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.entry-content p,
+.entry-content ul,
+.entry-content ol,
+.entry-content blockquote {
+  margin-bottom: 1rem;
+}
+
+.entry-content ul,
+.entry-content ol {
+  padding-left: 1.3rem;
+}
 
 .entry-content blockquote {
   margin-left: 0;
