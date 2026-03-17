@@ -6,11 +6,6 @@ const blogPosts = await getCollection('blog');
 const labPosts = await getCollection('labs');
 const sketchPosts = await getCollection('sketchbook');
 
-const sortByDate = (
-  a: CollectionEntry<'blog'> | CollectionEntry<'labs'> | CollectionEntry<'sketchbook'>,
-  b: CollectionEntry<'blog'> | CollectionEntry<'labs'> | CollectionEntry<'sketchbook'>
-) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime();
-
 const latestBlog = [...blogPosts].sort(
   (a: CollectionEntry<'blog'>, b: CollectionEntry<'blog'>) =>
     new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
