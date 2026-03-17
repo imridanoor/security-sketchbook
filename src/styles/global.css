@@ -543,3 +543,54 @@ main.container {
   transform: translateY(-2px);
   transition: transform 0.18s ease;
 }
+.card-section-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.card-section-link:hover {
+  text-decoration: underline;
+}
+
+.latest-title {
+  display: inline-block;
+  margin-top: 12px;
+  font-weight: 700;
+  color: #5a1f22;
+  text-decoration: none;
+}
+
+.latest-title:hover {
+  text-decoration: underline;
+}
+/* HOMEPAGE GRID */
+
+.homepage-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+  margin-top: 48px;
+}
+
+/* make cards fill their grid cell cleanly */
+
+.homepage-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 180px;
+}
+
+/* keep preview content pushed slightly down */
+
+.latest-preview {
+  margin-top: 14px;
+}
+
+/* mobile layout */
+
+@media (max-width: 800px) {
+  .homepage-grid {
+    grid-template-columns: 1fr;
+  }
+}

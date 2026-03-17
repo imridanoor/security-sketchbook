@@ -29,6 +29,7 @@ const latestSketch = await sanity.fetch(`
 
 <BaseLayout title="Security Sketchbook">
   <main class="container homepage-shell">
+
     <section class="hero">
       <h1>
         <span class="hero-kicker">Rida's</span>
@@ -41,6 +42,7 @@ const latestSketch = await sanity.fetch(`
     </section>
 
     <section class="homepage-grid">
+
       <article class="homepage-card intro-card">
         <h2>What is Security Sketchbook?</h2>
         <p>
@@ -50,77 +52,79 @@ const latestSketch = await sanity.fetch(`
         </p>
       </article>
 
-      <a href="/sketchbook" class="homepage-card homepage-card-link">
-        <h2>Sketchbook</h2>
-        <p>
-          Visit my visual diagrams of security systems and concepts re-imagined.
-        </p>
+      <article class="homepage-card">
+  <h2>
+    <a href="/sketchbook" class="card-section-link">Sketchbook</a>
+  </h2>
 
-        {latestSketch ? (
-          <div class="latest-preview">
-            <a
-              class="latest-title"
-              href={`/sketchbook/${latestSketch.slug}`}
-              onclick="event.stopPropagation()"
-            >
-              {latestSketch.title}
-            </a>
-            {latestSketch.excerpt && (
-              <p class="latest-excerpt">{latestSketch.excerpt}</p>
-            )}
-          </div>
-        ) : (
-          <p class="latest-empty">No sketchbook posts yet.</p>
-        )}
+  <p>
+    Visit my visual diagrams of security systems and concepts re-imagined.
+  </p>
+
+  {latestSketch ? (
+    <div class="latest-preview">
+      <a class="latest-title" href={`/sketchbook/${latestSketch.slug}`}>
+        {latestSketch.title}
       </a>
 
-      <a href="/blog" class="homepage-card homepage-card-link">
-        <h2>Blog</h2>
-        <p>
-          Explore my explanations of concepts and ideas.
-        </p>
+      {latestSketch.excerpt && (
+        <p class="latest-excerpt">{latestSketch.excerpt}</p>
+      )}
+    </div>
+  ) : (
+    <p class="latest-empty">No sketchbook posts yet.</p>
+  )}
+</article>
 
-        {latestBlog ? (
-          <div class="latest-preview">
-            <a
-              class="latest-title"
-              href={`/blog/${latestBlog.slug}`}
-              onclick="event.stopPropagation()"
-            >
-              {latestBlog.title}
-            </a>
-            {latestBlog.excerpt && (
-              <p class="latest-excerpt">{latestBlog.excerpt}</p>
-            )}
-          </div>
-        ) : (
-          <p class="latest-empty">No blog posts yet.</p>
-        )}
+      <article class="homepage-card">
+  <h2>
+    <a href="/blog" class="card-section-link">Blog</a>
+  </h2>
+
+  <p>
+    Explore my explanations of concepts and ideas.
+  </p>
+
+  {latestBlog ? (
+    <div class="latest-preview">
+      <a class="latest-title" href={`/blog/${latestBlog.slug}`}>
+        {latestBlog.title}
       </a>
 
-      <a href="/labs" class="homepage-card homepage-card-link">
-        <h2>Labs</h2>
-        <p>
-          Examine my hands-on investigations and experiments.
-        </p>
+      {latestBlog.excerpt && (
+        <p class="latest-excerpt">{latestBlog.excerpt}</p>
+      )}
+    </div>
+  ) : (
+    <p class="latest-empty">No blog posts yet.</p>
+  )}
+</article>
 
-        {latestLab ? (
-          <div class="latest-preview">
-            <a
-              class="latest-title"
-              href={`/labs/${latestLab.slug}`}
-              onclick="event.stopPropagation()"
-            >
-              {latestLab.title}
-            </a>
-            {latestLab.excerpt && (
-              <p class="latest-excerpt">{latestLab.excerpt}</p>
-            )}
-          </div>
-        ) : (
-          <p class="latest-empty">No lab posts yet.</p>
-        )}
+      <article class="homepage-card">
+  <h2>
+    <a href="/labs" class="card-section-link">Labs</a>
+  </h2>
+
+  <p>
+    Examine my hands-on investigations and experiments.
+  </p>
+
+  {latestLab ? (
+    <div class="latest-preview">
+      <a class="latest-title" href={`/labs/${latestLab.slug}`}>
+        {latestLab.title}
       </a>
+
+      {latestLab.excerpt && (
+        <p class="latest-excerpt">{latestLab.excerpt}</p>
+      )}
+    </div>
+  ) : (
+    <p class="latest-empty">No lab posts yet.</p>
+  )}
+</article>
+
     </section>
+
   </main>
 </BaseLayout>
