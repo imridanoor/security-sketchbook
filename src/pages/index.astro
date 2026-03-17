@@ -29,7 +29,6 @@ const latestSketch = await sanity.fetch(`
 
 <BaseLayout title="Security Sketchbook">
   <main class="container homepage-shell">
-
     <section class="hero">
       <h1>
         <span class="hero-kicker">Rida's</span>
@@ -42,7 +41,6 @@ const latestSketch = await sanity.fetch(`
     </section>
 
     <section class="homepage-grid">
-
       <article class="homepage-card intro-card">
         <h2>What is Security Sketchbook?</h2>
         <p>
@@ -52,7 +50,7 @@ const latestSketch = await sanity.fetch(`
         </p>
       </article>
 
-      <article class="homepage-card">
+      <a href="/sketchbook" class="homepage-card homepage-card-link">
         <h2>Sketchbook</h2>
         <p>
           Visit my visual diagrams of security systems and concepts re-imagined.
@@ -60,7 +58,11 @@ const latestSketch = await sanity.fetch(`
 
         {latestSketch ? (
           <div class="latest-preview">
-            <a class="latest-title" href={`/sketchbook/${latestSketch.slug}`}>
+            <a
+              class="latest-title"
+              href={`/sketchbook/${latestSketch.slug}`}
+              onclick="event.stopPropagation()"
+            >
               {latestSketch.title}
             </a>
             {latestSketch.excerpt && (
@@ -70,9 +72,9 @@ const latestSketch = await sanity.fetch(`
         ) : (
           <p class="latest-empty">No sketchbook posts yet.</p>
         )}
-      </article>
+      </a>
 
-      <article class="homepage-card">
+      <a href="/blog" class="homepage-card homepage-card-link">
         <h2>Blog</h2>
         <p>
           Explore my explanations of concepts and ideas.
@@ -80,7 +82,11 @@ const latestSketch = await sanity.fetch(`
 
         {latestBlog ? (
           <div class="latest-preview">
-            <a class="latest-title" href={`/blog/${latestBlog.slug}`}>
+            <a
+              class="latest-title"
+              href={`/blog/${latestBlog.slug}`}
+              onclick="event.stopPropagation()"
+            >
               {latestBlog.title}
             </a>
             {latestBlog.excerpt && (
@@ -90,9 +96,9 @@ const latestSketch = await sanity.fetch(`
         ) : (
           <p class="latest-empty">No blog posts yet.</p>
         )}
-      </article>
+      </a>
 
-      <article class="homepage-card">
+      <a href="/labs" class="homepage-card homepage-card-link">
         <h2>Labs</h2>
         <p>
           Examine my hands-on investigations and experiments.
@@ -100,7 +106,11 @@ const latestSketch = await sanity.fetch(`
 
         {latestLab ? (
           <div class="latest-preview">
-            <a class="latest-title" href={`/labs/${latestLab.slug}`}>
+            <a
+              class="latest-title"
+              href={`/labs/${latestLab.slug}`}
+              onclick="event.stopPropagation()"
+            >
               {latestLab.title}
             </a>
             {latestLab.excerpt && (
@@ -110,9 +120,7 @@ const latestSketch = await sanity.fetch(`
         ) : (
           <p class="latest-empty">No lab posts yet.</p>
         )}
-      </article>
-
+      </a>
     </section>
-
   </main>
 </BaseLayout>
