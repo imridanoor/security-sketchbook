@@ -1,29 +1,35 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import { getCollection, type CollectionEntry } from 'astro:content';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { sanity } from "../lib/sanity";
 
-const blogPosts = await getCollection('blog');
-const labPosts = await getCollection('labs');
-const sketchPosts = await getCollection('sketchbook');
+const latestBlog = await sanity.fetch(`
+  *[_type == "blogPost"] | order(publishedAt desc)[0]{
+    title,
+    excerpt,
+    "slug": slug.current
+  }
+`);
 
-const latestBlog = [...blogPosts].sort(
-  (a: CollectionEntry<'blog'>, b: CollectionEntry<'blog'>) =>
-    new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
-)[0];
+const latestLab = await sanity.fetch(`
+  *[_type == "labPost"] | order(publishedAt desc)[0]{
+    title,
+    excerpt,
+    "slug": slug.current
+  }
+`);
 
-const latestLab = [...labPosts].sort(
-  (a: CollectionEntry<'labs'>, b: CollectionEntry<'labs'>) =>
-    new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
-)[0];
-
-const latestSketch = [...sketchPosts].sort(
-  (a: CollectionEntry<'sketchbook'>, b: CollectionEntry<'sketchbook'>) =>
-    new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
-)[0];
+const latestSketch = await sanity.fetch(`
+  *[_type == "sketchbookPost"] | order(publishedAt desc)[0]{
+    title,
+    excerpt,
+    "slug": slug.current
+  }
+`);
 ---
 
 <BaseLayout title="Security Sketchbook">
   <main class="container homepage-shell">
+
     <section class="hero">
       <h1>
         <span class="hero-kicker">Rida's</span>
@@ -36,6 +42,7 @@ const latestSketch = [...sketchPosts].sort(
     </section>
 
     <section class="homepage-grid">
+
       <article class="homepage-card intro-card">
         <h2>What is Security Sketchbook?</h2>
         <p>
@@ -53,16 +60,12 @@ const latestSketch = [...sketchPosts].sort(
 
         {latestSketch ? (
           <div class="latest-preview">
-            <p class="latest-label">Latest post</p>
-            <a
-              class="latest-title"
-              href={`/sketchbook/${latestSketch.id.replace(/\.md$/, '')}/`}
-            >
-              {latestSketch.data.title}
+            <a class="latest-title" href={`/sketchbook/${latestSketch.slug}`}>
+              {latestSketch.title}
             </a>
-            <p class="latest-excerpt">
-              {latestSketch.data.description}
-            </p>
+            {latestSketch.excerpt && (
+              <p class="latest-excerpt">{latestSketch.excerpt}</p>
+            )}
           </div>
         ) : (
           <p class="latest-empty">No sketchbook posts yet.</p>
@@ -77,16 +80,12 @@ const latestSketch = [...sketchPosts].sort(
 
         {latestBlog ? (
           <div class="latest-preview">
-            <p class="latest-label">Latest post</p>
-            <a
-              class="latest-title"
-              href={`/blog/${latestBlog.id.replace(/\.md$/, '')}/`}
-            >
-              {latestBlog.data.title}
+            <a class="latest-title" href={`/blog/${latestBlog.slug}`}>
+              {latestBlog.title}
             </a>
-            <p class="latest-excerpt">
-              {latestBlog.data.description}
-            </p>
+            {latestBlog.excerpt && (
+              <p class="latest-excerpt">{latestBlog.excerpt}</p>
+            )}
           </div>
         ) : (
           <p class="latest-empty">No blog posts yet.</p>
@@ -101,21 +100,19 @@ const latestSketch = [...sketchPosts].sort(
 
         {latestLab ? (
           <div class="latest-preview">
-            <p class="latest-label">Latest post</p>
-            <a
-              class="latest-title"
-              href={`/labs/${latestLab.id.replace(/\.md$/, '')}/`}
-            >
-              {latestLab.data.title}
+            <a class="latest-title" href={`/labs/${latestLab.slug}`}>
+              {latestLab.title}
             </a>
-            <p class="latest-excerpt">
-              {latestLab.data.description}
-            </p>
+            {latestLab.excerpt && (
+              <p class="latest-excerpt">{latestLab.excerpt}</p>
+            )}
           </div>
         ) : (
           <p class="latest-empty">No lab posts yet.</p>
         )}
       </article>
+
     </section>
+
   </main>
 </BaseLayout>
