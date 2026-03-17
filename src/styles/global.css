@@ -355,3 +355,151 @@ main.container {
 .card-list li + li {
   margin-top: 0.35rem;
 }
+/* HOMEPAGE */
+
+.homepage-shell {
+  max-width: 1180px;
+  margin: 36px auto;
+  padding: 32px 36px 48px;
+  background: rgba(244, 239, 232, 0.86);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 28px;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.08);
+}
+
+.hero {
+  padding: 12px 0 22px;
+  text-align: center;
+}
+
+.hero h1 {
+  margin: 0;
+  line-height: 0.92;
+  letter-spacing: -0.05em;
+  color: #5a1f22;
+}
+
+.hero-kicker {
+  display: block;
+  font-size: clamp(3rem, 6vw, 4.8rem);
+  font-weight: 800;
+}
+
+.hero-main {
+  display: block;
+  font-size: clamp(4.2rem, 9vw, 7.2rem);
+  font-weight: 800;
+}
+
+.hero-subtitle {
+  max-width: 760px;
+  margin: 22px auto 0;
+  font-size: 1.15rem;
+  line-height: 1.45;
+  color: #605956;
+}
+
+.homepage-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px 36px;
+  margin-top: 22px;
+}
+
+.homepage-card {
+  background: rgba(239, 222, 205, 0.88);
+  border: 1px solid rgba(90, 31, 34, 0.08);
+  border-radius: 24px;
+  padding: 26px 30px 24px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+}
+
+.homepage-card h2 {
+  margin: 0 0 10px;
+  text-align: center;
+  font-size: clamp(2rem, 3.4vw, 3rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: #5a1f22;
+}
+
+.homepage-card p {
+  margin: 0;
+  color: #5f5a52;
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
+.intro-card h2,
+.intro-card p {
+  text-align: left;
+}
+
+.latest-preview {
+  margin-top: 18px;
+}
+
+.latest-label {
+  margin: 12px 0 6px;
+  text-align: center;
+  font-size: 2.2rem;
+  line-height: 1;
+  color: #6b2d31;
+  font-family: "Bradley Hand", "Marker Felt", "Comic Sans MS", cursive;
+}
+
+.latest-link {
+  display: inline-block;
+  margin-top: 6px;
+  text-decoration: none;
+  font-weight: 700;
+  color: #5a1f22;
+  border-bottom: 1px solid transparent;
+}
+
+.latest-link:hover {
+  border-bottom-color: #5a1f22;
+}
+
+.latest-description {
+  margin-top: 8px;
+  color: #6a6460;
+  font-size: 0.97rem;
+  line-height: 1.45;
+}
+
+.latest-empty {
+  margin-top: 18px;
+  color: #7a726d;
+}
+
+.content-card .latest-preview,
+.content-card .latest-empty {
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .homepage-shell {
+    margin: 18px 16px;
+    padding: 24px 20px 32px;
+    border-radius: 22px;
+  }
+
+  .homepage-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .hero-main {
+    font-size: clamp(3.4rem, 12vw, 5.2rem);
+  }
+
+  .hero-kicker {
+    font-size: clamp(2.4rem, 8vw, 3.5rem);
+  }
+
+  .homepage-card {
+    padding: 22px 22px 20px;
+  }
+}

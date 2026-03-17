@@ -1,35 +1,104 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const blogPosts = await getCollection('blog');
+const labPosts = await getCollection('labs');
+const sketchbookPosts = await getCollection('sketchbook');
+
+const sortByDate = (a, b) =>
+  new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime();
+
+const latestBlog = [...blogPosts].sort(sortByDate)[0];
+const latestLab = [...labPosts].sort(sortByDate)[0];
+const latestSketch = [...sketchbookPosts].sort(sortByDate)[0];
 ---
 
 <BaseLayout title="Security Sketchbook">
-  <main class="container">
+  <main class="container homepage-shell">
     <section class="hero">
-      <h1>Security Sketchbook</h1>
-      <p>
+      <h1>
+        <span class="hero-kicker">Rida’s</span>
+        <span class="hero-main">Security Sketchbook</span>
+      </h1>
+
+      <p class="hero-subtitle">
         Visualizing cybersecurity concepts through diagrams and investigations.
       </p>
     </section>
 
-    <section class="card-grid">
-  <article class="card">
-    <h2>What is Security Sketchbook?</h2>
+    <section class="homepage-grid">
+      <article class="homepage-card intro-card">
+        <h2>What is Security Sketchbook?</h2>
+        <p>
+          This site is my personal notebook for learning cybersecurity. I document
+          things I'm studying, diagrams I'm drawing, and investigations I'm
+          working through.
+        </p>
+      </article>
 
-    <p class="card-description">
-      This site is my personal notebook for learning cybersecurity. I document
-      things I'm studying, diagrams I'm drawing, and investigations I'm working through.
-    </p>
+      <article class="homepage-card content-card">
+        <h2>Sketchbook</h2>
+        <p>
+          Visit my visual diagrams of security systems and concepts re-imagined.
+        </p>
 
-    <p class="card-description">
-      You can explore the site in three ways:
-    </p>
+        {latestSketch ? (
+          <div class="latest-preview">
+            <p class="latest-label">Latest</p>
+            <a class="latest-link" href={`/sketchbook/${latestSketch.slug}/`}>
+              {latestSketch.data.title}
+            </a>
+            {latestSketch.data.description && (
+              <p class="latest-description">{latestSketch.data.description}</p>
+            )}
+          </div>
+        ) : (
+          <p class="latest-empty">No sketchbook posts yet.</p>
+        )}
+      </article>
 
-    <ul class="card-list">
-      <li><strong>Blog</strong> — explanations of concepts and ideas</li>
-      <li><strong>Labs</strong> — hands-on investigations and experiments</li>
-      <li><strong>Sketchbook</strong> — visual diagrams of security systems</li>
-    </ul>
-  </article>
-</section>
+      <article class="homepage-card content-card">
+        <h2>Blog</h2>
+        <p>
+          Explore my explanations of concepts and ideas.
+        </p>
+
+        {latestBlog ? (
+          <div class="latest-preview">
+            <p class="latest-label">Latest</p>
+            <a class="latest-link" href={`/blog/${latestBlog.slug}/`}>
+              {latestBlog.data.title}
+            </a>
+            {latestBlog.data.description && (
+              <p class="latest-description">{latestBlog.data.description}</p>
+            )}
+          </div>
+        ) : (
+          <p class="latest-empty">No blog posts yet.</p>
+        )}
+      </article>
+
+      <article class="homepage-card content-card">
+        <h2>Labs</h2>
+        <p>
+          Examine my hands-on investigations and experiments.
+        </p>
+
+        {latestLab ? (
+          <div class="latest-preview">
+            <p class="latest-label">Latest</p>
+            <a class="latest-link" href={`/labs/${latestLab.slug}/`}>
+              {latestLab.data.title}
+            </a>
+            {latestLab.data.description && (
+              <p class="latest-description">{latestLab.data.description}</p>
+            )}
+          </div>
+        ) : (
+          <p class="latest-empty">No lab posts yet.</p>
+        )}
+      </article>
+    </section>
   </main>
 </BaseLayout>
