@@ -479,27 +479,39 @@ main.container {
   text-align: center;
 }
 
-@media (max-width: 900px) {
-  .homepage-shell {
-    margin: 18px 16px;
-    padding: 24px 20px 32px;
-    border-radius: 22px;
-  }
+.latest-preview {
+  margin-top: 18px;
+  text-align: center;
+}
 
-  .homepage-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
+.latest-label {
+  margin: 12px 0 6px;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #7b6c67;
+}
 
-  .hero-main {
-    font-size: clamp(3.4rem, 12vw, 5.2rem);
-  }
+.latest-title {
+  display: inline-block;
+  font-weight: 700;
+  text-decoration: none;
+  color: #5a1f22;
+  border-bottom: 1px solid transparent;
+}
 
-  .hero-kicker {
-    font-size: clamp(2.4rem, 8vw, 3.5rem);
-  }
+.latest-title:hover {
+  border-bottom-color: #5a1f22;
+}
 
-  .homepage-card {
-    padding: 22px 22px 20px;
-  }
+.latest-excerpt {
+  margin-top: 6px;
+  font-size: 0.95rem;
+  color: #6b615e;
+}
+
+.latest-empty {
+  margin-top: 18px;
+  text-align: center;
+  color: #7b726f;
 }

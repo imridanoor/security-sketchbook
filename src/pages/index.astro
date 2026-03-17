@@ -4,21 +4,23 @@ import { getCollection } from 'astro:content';
 
 const blogPosts = await getCollection('blog');
 const labPosts = await getCollection('labs');
-const sketchbookPosts = await getCollection('sketchbook');
+const sketchPosts = await getCollection('sketchbook');
 
 const sortByDate = (a, b) =>
-  new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime();
+  new Date(b.data.publishedAt ?? 0).getTime() -
+  new Date(a.data.publishedAt ?? 0).getTime();
 
 const latestBlog = [...blogPosts].sort(sortByDate)[0];
 const latestLab = [...labPosts].sort(sortByDate)[0];
-const latestSketch = [...sketchbookPosts].sort(sortByDate)[0];
+const latestSketch = [...sketchPosts].sort(sortByDate)[0];
 ---
 
 <BaseLayout title="Security Sketchbook">
   <main class="container homepage-shell">
+
     <section class="hero">
       <h1>
-        <span class="hero-kicker">Rida’s</span>
+        <span class="hero-kicker">Rida's</span>
         <span class="hero-main">Security Sketchbook</span>
       </h1>
 
@@ -28,16 +30,17 @@ const latestSketch = [...sketchbookPosts].sort(sortByDate)[0];
     </section>
 
     <section class="homepage-grid">
+
       <article class="homepage-card intro-card">
         <h2>What is Security Sketchbook?</h2>
         <p>
-          This site is my personal notebook for learning cybersecurity. I document
-          things I'm studying, diagrams I'm drawing, and investigations I'm
-          working through.
+          This site is my personal notebook for learning cybersecurity.
+          I document things I'm studying, diagrams I'm drawing, and
+          investigations I'm working through.
         </p>
       </article>
 
-      <article class="homepage-card content-card">
+      <article class="homepage-card">
         <h2>Sketchbook</h2>
         <p>
           Visit my visual diagrams of security systems and concepts re-imagined.
@@ -46,11 +49,18 @@ const latestSketch = [...sketchbookPosts].sort(sortByDate)[0];
         {latestSketch ? (
           <div class="latest-preview">
             <p class="latest-label">Latest</p>
-            <a class="latest-link" href={`/sketchbook/${latestSketch.slug}/`}>
+
+            <a
+              class="latest-title"
+              href={`/sketchbook/${latestSketch.slug}/`}
+            >
               {latestSketch.data.title}
             </a>
-            {latestSketch.data.description && (
-              <p class="latest-description">{latestSketch.data.description}</p>
+
+            {latestSketch.data.excerpt && (
+              <p class="latest-excerpt">
+                {latestSketch.data.excerpt}
+              </p>
             )}
           </div>
         ) : (
@@ -58,7 +68,7 @@ const latestSketch = [...sketchbookPosts].sort(sortByDate)[0];
         )}
       </article>
 
-      <article class="homepage-card content-card">
+      <article class="homepage-card">
         <h2>Blog</h2>
         <p>
           Explore my explanations of concepts and ideas.
@@ -67,11 +77,18 @@ const latestSketch = [...sketchbookPosts].sort(sortByDate)[0];
         {latestBlog ? (
           <div class="latest-preview">
             <p class="latest-label">Latest</p>
-            <a class="latest-link" href={`/blog/${latestBlog.slug}/`}>
+
+            <a
+              class="latest-title"
+              href={`/blog/${latestBlog.slug}/`}
+            >
               {latestBlog.data.title}
             </a>
-            {latestBlog.data.description && (
-              <p class="latest-description">{latestBlog.data.description}</p>
+
+            {latestBlog.data.excerpt && (
+              <p class="latest-excerpt">
+                {latestBlog.data.excerpt}
+              </p>
             )}
           </div>
         ) : (
@@ -79,7 +96,7 @@ const latestSketch = [...sketchbookPosts].sort(sortByDate)[0];
         )}
       </article>
 
-      <article class="homepage-card content-card">
+      <article class="homepage-card">
         <h2>Labs</h2>
         <p>
           Examine my hands-on investigations and experiments.
@@ -88,17 +105,25 @@ const latestSketch = [...sketchbookPosts].sort(sortByDate)[0];
         {latestLab ? (
           <div class="latest-preview">
             <p class="latest-label">Latest</p>
-            <a class="latest-link" href={`/labs/${latestLab.slug}/`}>
+
+            <a
+              class="latest-title"
+              href={`/labs/${latestLab.slug}/`}
+            >
               {latestLab.data.title}
             </a>
-            {latestLab.data.description && (
-              <p class="latest-description">{latestLab.data.description}</p>
+
+            {latestLab.data.excerpt && (
+              <p class="latest-excerpt">
+                {latestLab.data.excerpt}
+              </p>
             )}
           </div>
         ) : (
           <p class="latest-empty">No lab posts yet.</p>
         )}
       </article>
+
     </section>
   </main>
 </BaseLayout>
