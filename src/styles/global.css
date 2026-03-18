@@ -1,5 +1,5 @@
 :root {
-  --bg: #3e3732;
+  --bg: #6868cb;
   --surface: rgba(243, 224, 206, 0.92);
   --text: #512222;
   --muted: #5f5a52;
@@ -24,7 +24,7 @@ body {
   margin: 0;
   min-height: 100vh;
   color: var(--text);
-  background: #f5f1eb;
+  background: #473dd2;
 }
 
 img {
@@ -546,12 +546,10 @@ main.container {
 }
 
 body {
-  margin: 0;
-  min-height: 100vh;
-  color: var(--text);
-  background: #f5f1eb;
+  background:
+    radial-gradient(circle at top,#553969,#7190c4),
+    url("/images/noise.png");
 }
-
 .homepage-shell {
   max-width: 1100px;
   margin: 0 auto;
@@ -649,14 +647,16 @@ body {
   display: flex;
   flex-direction: column;
 }
+
 .site-nav {
-  width: 100%;
-  background: transparent;
-  border: 0;
-  position: static;
-  box-shadow: none;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+
+  margin: 20px auto 0;
+  max-width: var(--max-width);
+  padding: 12px 24px;
 }
 
 .global-footer {
