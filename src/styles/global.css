@@ -1,5 +1,5 @@
 :root {
-  --bg: #6868cb;
+  --bg: #463460;
   --surface: rgba(243, 224, 206, 0.92);
   --text: #512222;
   --muted: #5f5a52;
@@ -57,14 +57,14 @@ main.container {
 
 .hero-kicker {
   display: block;
-  font-size: clamp(2.4rem, 4vw, 3.4rem);
+  font-size: clamp(5.4rem, 4vw, 3.4rem);
   font-weight: 800;
   letter-spacing: -0.02em;
 }
 
 .hero-main {
   display: block;
-  font-size: clamp(3.8rem, 7vw, 6rem);
+  font-size: clamp(8.8rem, 7vw, 6rem);
   font-weight: 800;
   letter-spacing: -0.04em;
 }
@@ -72,7 +72,7 @@ main.container {
 .hero-subtitle {
   max-width: 760px;
   margin: 18px auto 0;
-  font-size: 1.15rem;
+  font-size: 8.15rem;
   line-height: 1.45;
   color: #882b2b;
 }
@@ -85,7 +85,7 @@ main.container {
 
 .page-intro h1 {
   margin: 0 0 12px;
-  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-size: clamp(4.2rem, 5vw, 3.4rem);
   line-height: 1;
   letter-spacing: -0.04em;
 }
@@ -95,6 +95,7 @@ main.container {
   margin: 0;
   max-width: 700px;
   line-height: 1.7;
+  font-size: 2.5rem;
 }
 
 /* GENERIC GRIDS + CARDS */
@@ -117,7 +118,7 @@ main.container {
 .section-card h2,
 .card h2 {
   margin: 0 0 10px;
-  font-size: 1.6rem;
+  font-size: 2.6rem;
   line-height: 1.1;
   letter-spacing: -0.03em;
 }
@@ -149,7 +150,7 @@ main.container {
 
 .card-title-link h2 {
   margin: 0 0 10px;
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   letter-spacing: -0.03em;
 }
 
@@ -329,7 +330,7 @@ main.container {
 .homepage-card h2 {
   margin: 0 0 10px;
   text-align: center;
-  font-size: clamp(2rem, 3.4vw, 3rem);
+  font-size: clamp(3rem, 3.4vw, 3rem);
   line-height: 1;
   letter-spacing: -0.03em;
   color: #5a1f22;
@@ -451,7 +452,7 @@ main.container {
   }
 
   .hero-subtitle {
-    font-size: 1rem;
+    font-size: 8rem;
   }
 
   .homepage-card {
@@ -664,7 +665,8 @@ body::before {
 }
 
 .site-nav {
-  background: var(--surface);
+  background: rgba(240, 228, 216, 0.85);
+  backdrop-filter: blur(6px);
   border: 1px solid var(--border);
   border-radius: 18px;
   box-shadow: var(--shadow);
@@ -690,9 +692,7 @@ body::before {
   font-size: 1.6rem;
   font-weight: 600;
 }
-.notebook-page body {
-  background-image: url("/images/desk-scene.png");
-}
+
 .hero {
   position: relative;
   overflow: hidden;
