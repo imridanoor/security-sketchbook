@@ -548,7 +548,7 @@ main.container {
 body {
   background:
     radial-gradient(circle at top,#553969,#7190c4),
-    url("/images/noise.png");
+    url("/images/background-rida.png");
 }
 .homepage-shell {
   max-width: 1400px;
