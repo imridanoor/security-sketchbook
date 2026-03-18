@@ -20,13 +20,6 @@ html {
   background: var(--bg);
 }
 
-body {
-  margin: 0;
-  min-height: 100vh;
-  color: var(--text);
-  background: #473dd2;
-}
-
 img {
   max-width: 100%;
   display: block;
@@ -546,10 +539,24 @@ main.container {
 }
 
 body {
-  background:
-    radial-gradient(circle at top,#553969,#7190c4),
-    url("/images/background-rida.png");
+  position: relative;
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text);
+  background: none;
 }
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    url("/images/background-rida.png") center / cover no-repeat;
+  filter: blur(18px) brightness(0.9);
+  transform: scale(1.08);
+  z-index: -2;
+}
+
 .homepage-shell {
   max-width: 1400px;
   margin: 0 auto;
