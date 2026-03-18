@@ -7,7 +7,7 @@
   --border: rgba(17, 17, 17, 0.08);
   --border-radius: 18px;
   --shadow: 0 10px 24px rgba(0, 0, 0, 0.05);
-  --max-width: 1100px;
+  --max-width: 1400px;
 }
 
 * {
@@ -81,7 +81,7 @@ main.container {
   margin: 18px auto 0;
   font-size: 1.15rem;
   line-height: 1.45;
-  color: #605956;
+  color: #882b2b;
 }
 
 /* SHARED PAGE INTRO */
@@ -280,7 +280,7 @@ main.container {
 /* HOMEPAGE */
 
 .homepage-shell {
-  max-width: 1280px;
+  max-width: 1400px;
   margin: 36px auto;
   padding: 48px 56px 40px;
   background: rgba(244, 239, 232, 0.82);
@@ -471,7 +471,7 @@ main.container {
 }
 
 .recent-section {
-  max-width: 1100px;
+  max-width: 1400px;
   margin: 80px auto;
 }
 
@@ -551,7 +551,7 @@ body {
     url("/images/noise.png");
 }
 .homepage-shell {
-  max-width: 1100px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 0 24px 48px;
 }
@@ -617,7 +617,7 @@ body {
   margin-top: 28px;
   padding: 14px 28px;
   border-radius: 14px;
-  background: #4f67d7;
+  background: #b34a4a;
   color: white;
   text-decoration: none;
   font-weight: 600;
@@ -648,23 +648,22 @@ body {
   flex-direction: column;
 }
 
+.global-footer {
+  margin-top: 12px;
+  padding: 0 0 24px;
+  border-top: none;
+  width: auto;
+  margin-left: 0;
+}
+
 .site-nav {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 18px;
   box-shadow: var(--shadow);
-
-  margin: 20px auto 0;
+  margin: 0 auto;
   max-width: var(--max-width);
   padding: 12px 24px;
-}
-
-.global-footer {
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-top: 40px;
-  padding: 30px 0;
-  border-top: 1px solid rgba(90, 31, 34, 0.15);
 }
 
 .global-footer .nav-inner {
