@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import Navbar from '../components/Navbar.astro';
 
 interface Props {
   title?: string;
@@ -18,5 +19,9 @@ const { title = 'Security Sketchbook' } = Astro.props;
   </head>
   <body>
     <slot />
+
+    <footer class="global-footer">
+      <Navbar />
+    </footer>
   </body>
 </html>

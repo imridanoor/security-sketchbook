@@ -1,0 +1,119 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { sanity } from "../lib/sanity";
+
+const latestBlog = await sanity.fetch(`
+  *[_type == "blogPost"] | order(publishedAt desc)[0]{
+    title,
+    excerpt,
+    "slug": slug.current
+  }
+`);
+
+const latestLab = await sanity.fetch(`
+  *[_type == "labPost"] | order(publishedAt desc)[0]{
+    title,
+    excerpt,
+    "slug": slug.current
+  }
+`);
+
+const latestSketch = await sanity.fetch(`
+  *[_type == "sketchbookPost"] | order(publishedAt desc)[0]{
+    title,
+    excerpt,
+    "slug": slug.current
+  }
+`);
+---
+
+<BaseLayout title="Notebook | Security Sketchbook">
+
+<main class="homepage-shell">
+    <section class="homepage-intro">
+      <h1>Notebook</h1>
+      <p>
+        This is the main notebook for my cybersecurity learning.
+        It’s organized into labs, sketchbook entries, and blog posts.
+      </p>
+    </section>
+
+    <section class="explore-section">
+      <h2 class="section-heading">Explore the Notebook</h2>
+
+      <div class="homepage-grid">
+        <article class="homepage-card">
+          <h3>
+            <a href="/labs" class="card-section-link">Labs</a>
+          </h3>
+
+          <p>
+            Hands-on exercises, walkthroughs, and experiments as I build practical security skills.
+          </p>
+
+          {latestLab ? (
+            <div class="latest-preview">
+              <a class="latest-title" href={`/labs/${latestLab.slug}`}>
+                {latestLab.title}
+              </a>
+
+              {latestLab.excerpt && (
+                <p class="latest-excerpt">{latestLab.excerpt}</p>
+              )}
+            </div>
+          ) : (
+            <p class="latest-empty">No lab posts yet.</p>
+          )}
+        </article>
+
+        <article class="homepage-card">
+          <h3>
+            <a href="/sketchbook" class="card-section-link">Sketchbook</a>
+          </h3>
+
+          <p>
+            Visual explanations of security systems, workflows, and concepts reimagined through diagrams.
+          </p>
+
+          {latestSketch ? (
+            <div class="latest-preview">
+              <a class="latest-title" href={`/sketchbook/${latestSketch.slug}`}>
+                {latestSketch.title}
+              </a>
+
+              {latestSketch.excerpt && (
+                <p class="latest-excerpt">{latestSketch.excerpt}</p>
+              )}
+            </div>
+          ) : (
+            <p class="latest-empty">No sketchbook posts yet.</p>
+          )}
+        </article>
+
+        <article class="homepage-card">
+          <h3>
+            <a href="/blog" class="card-section-link">Blog</a>
+          </h3>
+
+          <p>
+            Reflections, concept writeups, and longer thoughts on what I’m learning in cybersecurity.
+          </p>
+
+          {latestBlog ? (
+            <div class="latest-preview">
+              <a class="latest-title" href={`/blog/${latestBlog.slug}`}>
+                {latestBlog.title}
+              </a>
+
+              {latestBlog.excerpt && (
+                <p class="latest-excerpt">{latestBlog.excerpt}</p>
+              )}
+            </div>
+          ) : (
+            <p class="latest-empty">No blog posts yet.</p>
+          )}
+        </article>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

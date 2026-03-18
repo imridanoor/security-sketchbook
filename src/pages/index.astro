@@ -45,12 +45,12 @@ const latestSketch = await sanity.fetch(`
       diagrams.
     </p>
 
-    <a href="#explore" class="hero-button">Explore the Notebook</a>
+    <a href="/notebook" class="hero-button">Open the Notebook</a>
   </div>
 </section>
 
     <section class="homepage-intro">
-      <h2>Welcome to the notebook</h2>
+      <h2>Welcome to my sketchbook</h2>
       <p>
         Security Sketchbook is my personal space for learning cybersecurity out loud.
         I use it to work through concepts visually, document hands-on labs, and turn
@@ -109,89 +109,85 @@ const latestSketch = await sanity.fetch(`
 </section>
 
 <section class="explore-section" id="explore">
-
   <h2 class="section-heading">Explore the Notebook</h2>
-<section class="homepage-section">
 
-      <div class="homepage-grid">
-        <article class="homepage-card">
-          <h3>
-            <a href="/labs" class="card-section-link">Labs</a>
-          </h3>
-
-          <p>
-            Hands-on exercises, walkthroughs, and experiments as I build practical security skills.
-          </p>
-
-          {latestLab ? (
-            <div class="latest-preview">
-              <a class="latest-title" href={`/labs/${latestLab.slug}`}>
-                {latestLab.title}
-              </a>
-
-              {latestLab.excerpt && (
-                <p class="latest-excerpt">{latestLab.excerpt}</p>
-              )}
-            </div>
-          ) : (
-            <p class="latest-empty">No lab posts yet.</p>
-          )}
-        </article>
-
-        <article class="homepage-card">
-          <h3>
-            <a href="/sketchbook" class="card-section-link">Sketchbook</a>
-          </h3>
-
-          <p>
-            Visual explanations of security systems, workflows, and concepts reimagined through diagrams.
-          </p>
-
-          {latestSketch ? (
-            <div class="latest-preview">
-              <a class="latest-title" href={`/sketchbook/${latestSketch.slug}`}>
-                {latestSketch.title}
-              </a>
-
-              {latestSketch.excerpt && (
-                <p class="latest-excerpt">{latestSketch.excerpt}</p>
-              )}
-            </div>
-          ) : (
-            <p class="latest-empty">No sketchbook posts yet.</p>
-          )}
-        </article>
-
-        <article class="homepage-card">
-          <h3>
-            <a href="/blog" class="card-section-link">Blog</a>
-          </h3>
-
-          <p>
-            Reflections, concept writeups, and longer thoughts on what I’m learning in cybersecurity.
-          </p>
-
-          {latestBlog ? (
-            <div class="latest-preview">
-              <a class="latest-title" href={`/blog/${latestBlog.slug}`}>
-                {latestBlog.title}
-              </a>
-
-              {latestBlog.excerpt && (
-                <p class="latest-excerpt">{latestBlog.excerpt}</p>
-              )}
-            </div>
-          ) : (
-            <p class="latest-empty">No blog posts yet.</p>
-          )}
-        </article>
-      </div>
-    </section>
   <div class="homepage-grid">
-    <section class="about-section">
+    <article class="homepage-card">
+      <h3>
+        <a href="/labs" class="card-section-link">Labs</a>
+      </h3>
 
+      <p>
+        Hands-on exercises, walkthroughs, and experiments as I build practical security skills.
+      </p>
+
+      {latestLab ? (
+        <div class="latest-preview">
+          <a class="latest-title" href={`/labs/${latestLab.slug}`}>
+            {latestLab.title}
+          </a>
+
+          {latestLab.excerpt && (
+            <p class="latest-excerpt">{latestLab.excerpt}</p>
+          )}
+        </div>
+      ) : (
+        <p class="latest-empty">No lab posts yet.</p>
+      )}
+    </article>
+
+    <article class="homepage-card">
+      <h3>
+        <a href="/sketchbook" class="card-section-link">Sketchbook</a>
+      </h3>
+
+      <p>
+        Visual explanations of security systems, workflows, and concepts reimagined through diagrams.
+      </p>
+
+      {latestSketch ? (
+        <div class="latest-preview">
+          <a class="latest-title" href={`/sketchbook/${latestSketch.slug}`}>
+            {latestSketch.title}
+          </a>
+
+          {latestSketch.excerpt && (
+            <p class="latest-excerpt">{latestSketch.excerpt}</p>
+          )}
+        </div>
+      ) : (
+        <p class="latest-empty">No sketchbook posts yet.</p>
+      )}
+    </article>
+
+    <article class="homepage-card">
+      <h3>
+        <a href="/blog" class="card-section-link">Blog</a>
+      </h3>
+
+      <p>
+        Reflections, concept writeups, and longer thoughts on what I’m learning in cybersecurity.
+      </p>
+
+      {latestBlog ? (
+        <div class="latest-preview">
+          <a class="latest-title" href={`/blog/${latestBlog.slug}`}>
+            {latestBlog.title}
+          </a>
+
+          {latestBlog.excerpt && (
+            <p class="latest-excerpt">{latestBlog.excerpt}</p>
+          )}
+        </div>
+      ) : (
+        <p class="latest-empty">No blog posts yet.</p>
+      )}
+    </article>
+  </div>
+</section>
+
+<section class="about-section">
   <div class="about-grid">
-
     <div class="about-text">
       <h2>Hi, I’m Rida.</h2>
 
@@ -207,19 +203,11 @@ const latestSketch = await sanity.fetch(`
     </div>
 
     <div class="about-image">
-      <img src="/images/rida-drawing.png" alt="Rida drawing security diagrams">
+      <img src="/images/rida-drawing.PNG" alt="Rida drawing security diagrams" />
     </div>
-  
-  </section>
-  </main>
-  <footer class="site-footer">
-  <nav class="footer-nav">
-    <a href="/about">About</a>
-    <a href="https://www.linkedin.com/im-rida-noor" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-    <a href="https://github.com/imridanoor" target="_blank" rel="noopener noreferrer">GitHub</a>
-    <a href="/contact">Contact</a>
-  </nav>
-</footer>
   </div>
+</section>
+
+</main>
 
 </BaseLayout>
