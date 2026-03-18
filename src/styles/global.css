@@ -24,11 +24,7 @@ body {
   margin: 0;
   min-height: 100vh;
   color: var(--text);
-  background-image: url("/images/desk-scene.png");
-  background-size: cover;
-  background-position: center top;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  background: #f5f1eb;
 }
 
 img {
@@ -342,9 +338,8 @@ main.container {
 
 .homepage-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 28px;
-  margin-top: 48px;
 }
 
 .homepage-card {
@@ -515,4 +510,157 @@ main.container {
   .homepage-card h2 {
     font-size: clamp(1.8rem, 8vw, 2.4rem);
   }
+}
+
+.recent-section {
+  max-width: 1100px;
+  margin: 80px auto;
+}
+
+.recent-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.recent-card {
+  padding: 24px;
+  background: white;
+  border-radius: 16px;
+  border: 1px solid #eee;
+}
+
+.recent-title {
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.recent-excerpt {
+  margin-top: 8px;
+  font-size: 0.9rem;
+}
+
+.section-heading {
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+.about-section {
+  max-width: 1100px;
+  margin: 100px auto;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.about-image img {
+  max-width: 100%;
+  border-radius: 16px;
+}
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text);
+  background: #f5f1eb;
+}
+
+.homepage-shell {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px 48px;
+}
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0 0 28px 28px;
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 72px;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url("/images/rida-drawing-blurred.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(3px);
+  transform: scale(1.05);
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(245, 241, 235, 0.38);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  padding: 48px 24px;
+}
+
+.hero-kicker {
+  display: block;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1;
+}
+
+.hero-main {
+  display: block;
+  font-size: clamp(3.5rem, 8vw, 6rem);
+  line-height: 0.95;
+}
+
+.hero-subtitle {
+  max-width: 640px;
+  margin: 24px auto 0;
+  font-size: 1.5rem;
+  line-height: 1.5;
+}
+
+.hero-button {
+  display: inline-block;
+  margin-top: 28px;
+  padding: 14px 28px;
+  border-radius: 14px;
+  background: #4f67d7;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.site-footer {
+  margin-top: 72px;
+  padding: 12px 0 0;
+}
+
+.footer-nav {
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.footer-nav a {
+  color: #4f4c73;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.footer-nav a:hover {
+  text-decoration: underline;
 }
