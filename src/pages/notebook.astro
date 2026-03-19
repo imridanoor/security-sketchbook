@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { sanity } from "../lib/sanity";
+import { sanity } from "../lib/sanity"
 
 const latestBlog = await sanity.fetch(`
   *[_type == "blogPost"] | order(publishedAt desc)[0]{

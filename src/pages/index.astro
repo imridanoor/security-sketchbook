@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { sanity } from "../lib/sanity";
+import Navbar from "../components/Navbar.astro";
 
 const latestBlog = await sanity.fetch(`
   *[_type == "blogPost"] | order(publishedAt desc)[0]{
@@ -120,6 +121,10 @@ const latestSketch = await sanity.fetch(`
     </div>
   </div>
 </section>
+
+  <section class="global-footer">
+    <Navbar />
+  </section>
 
 </main>
 
